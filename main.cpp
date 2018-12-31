@@ -4,6 +4,7 @@
 #include <math.h>
 #include "Bitmap.h"
 #include "Mandelbrot.h"
+#include "Zoom.h"
 
 using namespace akiljames;
 using namespace std;
@@ -13,8 +14,8 @@ int main() {
 	int const HEIGHT = 600;
 	Bitmap bitmap(WIDTH, HEIGHT);
 
-	double min = 9999999;
-	double max = -9999999;
+	// double min = 9999999;
+	// double max = -9999999;
 
 	unique_ptr<int[]> histogram(new int [Mandelbrot::MAX_ITERATIONS]{});
 	unique_ptr<int[]> fractal(new int [WIDTH*HEIGHT]{});
@@ -63,10 +64,6 @@ int main() {
 			}
 
 
-			
-
-
-			
 
 			bitmap.setPixel(w, h, red, green, blue);
 			
