@@ -1,9 +1,11 @@
 
+#include <fstream>
 #include "Bitmap.h"
 #include "BitmapFileHeader.h"
 #include "BitmapInfoHeader.h"
 
 using namespace akiljames;
+using namespace std;
 
 namespace akiljames {
 
@@ -22,8 +24,28 @@ bool Bitmap::write(string filename) {
 	infoHeader.width = m_width;
 	infoHeader.height = m_height;
 
+	ofstream file;
 
-	return false;
+	/* Writing to a binary file */
+	file.open(filename.c_str(), ios::out|ios::binary);
+
+	/* Checking to see if we can write to the file */
+	if (!file)
+		return false;
+
+	/* Writing to file after casting the pointer, static cast does not work though */
+	file.write((char *)&fileHeader, sizeof(fileHeader));
+	file.write((char *)&infoHeader, sizeof(infoHeader));
+	file.write((char *)(m_pPixels.get()), sizeof(m_width * m_height * 3));
+
+
+	file.close();
+
+	/* Making sure we can write to the file */
+	if(!file)
+		return false;
+
+	return true;
 }
 
 void Bitmap::setPixel(int x, int y, uint8_t red, uint8_t green, uint8_t blue) {
