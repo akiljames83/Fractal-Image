@@ -4,7 +4,6 @@
 
 #include <vector>
 #include <utility>
-#include <iostream>
 #include "Zoom.h"
 
 namespace akiljames {

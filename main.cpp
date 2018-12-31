@@ -14,11 +14,12 @@ int main() {
 	int const HEIGHT = 600;
 	Bitmap bitmap(WIDTH, HEIGHT);
 
-	// double min = 9999999;
-	// double max = -9999999;
+	
 	ZoomList zoomlist(WIDTH, HEIGHT);
 
-	zoomlist.add(Zoom(WIDTH/2, HEIGHT/2, 4./WIDTH));
+	zoomlist.add(Zoom(WIDTH/2, HEIGHT/2, 4./WIDTH)); /* 4 is defualt (365, 134) */ 
+	zoomlist.add(Zoom(365, HEIGHT - 134, 0.1));
+	zoomlist.add(Zoom(404, HEIGHT- 246, 0.3));
 
 	unique_ptr<int[]> histogram(new int [Mandelbrot::MAX_ITERATIONS]{});
 	unique_ptr<int[]> fractal(new int [WIDTH*HEIGHT]{});
@@ -26,9 +27,6 @@ int main() {
 	for (int w = 0; w < WIDTH; w++){
 		for (int h = 0; h < HEIGHT; h++){
 			/* Scaling Code */
-			// double xFractal =  (w - (WIDTH*1.38)/2) * 2./(HEIGHT*0.85); //((double)(w - 200)/WIDTH) * 2 - 1;
-			// double yFractal = (h - HEIGHT/2) * 2./(HEIGHT*0.85); //((double)h/HEIGHT) * 2 - 1;
-			// int iterations = Mandelbrot::getIterations(xFractal, yFractal);
 			pair<double, double> coords = zoomlist.doZoom(w, h);
 
 			/* Run the Mandelbrot Algorithm */
@@ -64,7 +62,8 @@ int main() {
 				for (int i = 0; i <= iterations; i++)
 					hue += static_cast<double>(histogram[i])/total;
 
-				green = pow(255, hue);
+				red = pow(255, hue);
+				blue = pow(127, hue);
 			}
 
 
@@ -74,7 +73,7 @@ int main() {
 		}
 	}
 
-	bitmap.write("test.bmp");
+	bitmap.write("test2.bmp");
 
 	cout << "Finished." << endl;
 	return 0;
@@ -82,7 +81,15 @@ int main() {
 
 
 /*
-OLD CODE FOR FRACTAL COLORING:
+OLD CODE :
+// double xFractal =  (w - (WIDTH*1.38)/2) * 2./(HEIGHT*0.85); //((double)(w - 200)/WIDTH) * 2 - 1;
+// double yFractal = (h - HEIGHT/2) * 2./(HEIGHT*0.85); //((double)h/HEIGHT) * 2 - 1;
+// int iterations = Mandelbrot::getIterations(xFractal, yFractal);
+
+OLDER CODE FOR FRACTAL COLORING:
+
+// double min = 9999999;
+// double max = -9999999;
 
 uint8_t color = static_cast<uint8_t>(256 * static_cast<double>(iterations)/Mandelbrot::MAX_ITERATIONS);
 
