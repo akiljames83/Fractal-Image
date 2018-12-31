@@ -10,6 +10,7 @@
 #include "Bitmap.h"
 #include "Mandelbrot.h"
 #include "ZoomList.h"
+#include "RGB.h"
 
 using namespace std;
 

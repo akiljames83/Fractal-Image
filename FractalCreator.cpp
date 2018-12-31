@@ -14,8 +14,8 @@ FractalCreator::~FractalCreator() {
 
 }
 void FractalCreator::run(string file) {
-	addZoom(Zoom(365, m_height - 134, 0.1));
-    addZoom(Zoom(404, m_height- 246, 0.3));
+	addZoom(Zoom(295, 202, 0.1));
+    addZoom(Zoom(312, 304, 0.1)); // 0.3 is cool too
 
     calculateIteration();
     calculateTotalIteration();
@@ -47,6 +47,11 @@ void FractalCreator::calculateTotalIteration() {
 
 }
 void FractalCreator::drawFractal() {
+
+	RGB startColor(0, 0, 0);
+	RGB endColor(0, 0, 255);
+	RGB colorDiff = endColor - startColor;
+
 	for (int w = 0; w < m_width; w++){
 		for (int h = 0; h < m_height; h++){
 
@@ -64,8 +69,10 @@ void FractalCreator::drawFractal() {
 				for (int i = 0; i <= iterations; i++)
 					hue += static_cast<double>(m_histogram[i])/m_total;
 
-				red = hue * 255;
-				blue = hue * 255 / 4;
+				red = startColor.r + colorDiff.r * hue;
+				blue = startColor.g + colorDiff.g * hue;
+				green = startColor.b + colorDiff.b * hue;
+
 			}
 
 			m_bitmap.setPixel(w, h, red, green, blue);

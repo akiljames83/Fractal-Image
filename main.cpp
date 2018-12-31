@@ -9,8 +9,8 @@ int main() {
 
 	FractalCreator fractalCreator(m_width, m_height);
 
-	fractalCreator.run("test3.bmp");
-	
+	fractalCreator.run("test4.bmp");
+
     cout << "Finished program." << endl;
 
 	return 0;
