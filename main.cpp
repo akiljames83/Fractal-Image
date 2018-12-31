@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstdint>
 #include <memory>
+#include <math.h>
 #include "Bitmap.h"
 #include "Mandelbrot.h"
 
@@ -43,16 +44,32 @@ int main() {
 
 	for (int w = 0; w < WIDTH; w++){
 		for (int h = 0; h < HEIGHT; h++){
+
+			uint8_t red = 0;
+			uint8_t green = 0;
+			uint8_t blue = 0;
+
 			/* Retrieve the number of iterations at pixel location */
 			int iterations = fractal[h*WIDTH + w];
 
-			uint8_t color = static_cast<uint8_t>(256 * static_cast<double>(iterations)/Mandelbrot::MAX_ITERATIONS);
+			if (iterations != Mandelbrot::MAX_ITERATIONS) {
+				/* Generate hue of the pixel based on number of other pixels that had less than this many iterations */
+				double hue = 0.;
 
-			color = color * color * color * color; /* Play with this to change the way color is displayed */
+				for (int i = 0; i <= iterations; i++)
+					hue += static_cast<double>(histogram[i])/total;
 
-			bitmap.setPixel(w, h, color, 0, 0);
-			if(color < min) min = color;
-			if(color > max) max = color;
+				green = pow(255, hue);
+			}
+
+
+			
+
+
+			
+
+			bitmap.setPixel(w, h, red, green, blue);
+			
 		}
 	}
 
