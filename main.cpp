@@ -9,6 +9,11 @@ int main() {
 
 	FractalCreator fractalCreator(m_width, m_height);
 
+	fractalCreator.addRange(0, RGB(0, 0, 0));
+	fractalCreator.addRange(0.3, RGB(255, 0, 0));
+	fractalCreator.addRange(0.5, RGB(255, 255, 0));
+	fractalCreator.addRange(1., RGB(255, 255, 255));
+
 	fractalCreator.run("test4.bmp");
 
     cout << "Finished program." << endl;

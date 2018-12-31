@@ -1,4 +1,4 @@
-CFLAGS = -std=c++11 -Wall -Ofast
+CFLAGS = -std=c++11 -Wall -Ofast -Wsign-compare
 FNAME = fractal
 GPP = g++
 
