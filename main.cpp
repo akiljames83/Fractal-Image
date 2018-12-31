@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstdint>
 #include "Bitmap.h"
 #include "Mandelbrot.h"
 
@@ -18,10 +19,15 @@ int main() {
 			double xFractal = ((double)w/WIDTH) * 2 - 1;
 			double yFractal = ((double)h/HEIGHT) * 2 - 1;
 
-			if (yFractal < min) min = xFractal;
-			if(yFractal > max) max = xFractal;
+			int iterations = Mandelbrot::getIterations(xFractal, yFractal);
+			uint8_t red = static_cast<uint8_t>(256 * static_cast<double>(iterations)/Mandelbrot::MAX_ITERATIONS);
 
-			bitmap.setPixel(w, h, 255, 0, 100);
+			bitmap.setPixel(w, h, red, red, red);
+			if(red < min) min = red;
+			if(red > max) max = red;
+			
+
+			
 		}
 	}
 
