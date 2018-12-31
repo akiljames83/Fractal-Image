@@ -6,11 +6,18 @@
 
 using namespace std;
 
+#pragma pack(2)
+
 struct BitmapFileHeader {
-	char header[2]{'B','M'}; // Setting first 2 bytes - header of file
+	/*
+		For writing information to the bitmap file.
+	*/
+	char header[2]{'B','M'}; 
 	int32_t filesize;
 	int32_t reserved{0};
 	int32_t dataOffset;
+
+	
 };
 
 
