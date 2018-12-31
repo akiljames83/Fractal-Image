@@ -13,7 +13,9 @@ public:
 public:
 	RGB(double r, double b, double g);
 };
-RGB operator-(const RGB&, const RGB& second)
+
+RGB operator-(const RGB&, const RGB& second);
+
 }
 
 #endif

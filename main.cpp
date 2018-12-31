@@ -9,14 +9,8 @@ int main() {
 
 	FractalCreator fractalCreator(m_width, m_height);
 
-	fractalCreator.addZoom(Zoom(365, m_height - 134, 0.1));
-    fractalCreator.addZoom(Zoom(404, m_height- 246, 0.3));
-
-    fractalCreator.calculateIteration();
-    fractalCreator.calculateTotalIteration();
-    fractalCreator.drawFractal();
-
-    fractalCreator.writeBitmap("test3.bmp");
+	fractalCreator.run("test3.bmp");
+	
     cout << "Finished program." << endl;
 
 	return 0;

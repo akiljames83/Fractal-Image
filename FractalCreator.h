@@ -28,8 +28,9 @@ private:
 public:
 	FractalCreator(int width, int height);
 	virtual ~FractalCreator();
+	void run(string file);
 
-public:
+private:
 	void calculateIteration();
 	void drawFractal();
 	void calculateTotalIteration();
