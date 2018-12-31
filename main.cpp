@@ -22,18 +22,6 @@ int main() {
 	return 0;
 
 }
-// int main() {
-
-
-
-
-
-
-// 	
-
-// 	cout << "Finished." << endl;
-// 	return 0;
-// }
 
 
 /*
