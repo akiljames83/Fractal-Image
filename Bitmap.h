@@ -4,12 +4,16 @@
 
 #include <string>
 #include <cstdint>
+#include <memory>
 using namespace std;
+
+namespace akiljames {
 
 class Bitmap {
 private:
 	int m_width{0};
 	int m_height{0};
+	unique_ptr<uint8_t[]> m_pPixels{nullptr};
 
 public:
 	Bitmap(int width, int height);
@@ -18,5 +22,8 @@ public:
 	virtual ~Bitmap();
 
 };
+
+} /* namespace akiljames */
+
 
 #endif 
