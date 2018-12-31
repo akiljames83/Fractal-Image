@@ -18,7 +18,7 @@ int main() {
 	// double max = -9999999;
 	ZoomList zoomlist(WIDTH, HEIGHT);
 
-	zoomlist.add(Zoom(WIDTH/2, HEIGHT/2, 1));
+	zoomlist.add(Zoom(WIDTH/2, HEIGHT/2, 4./WIDTH));
 
 	unique_ptr<int[]> histogram(new int [Mandelbrot::MAX_ITERATIONS]{});
 	unique_ptr<int[]> fractal(new int [WIDTH*HEIGHT]{});
@@ -26,12 +26,13 @@ int main() {
 	for (int w = 0; w < WIDTH; w++){
 		for (int h = 0; h < HEIGHT; h++){
 			/* Scaling Code */
-			double xFractal =  (w - (WIDTH*1.38)/2) * 2./(HEIGHT*0.85); //((double)(w - 200)/WIDTH) * 2 - 1;
-			double yFractal = (h - HEIGHT/2) * 2./(HEIGHT*0.85); //((double)h/HEIGHT) * 2 - 1;
-
+			// double xFractal =  (w - (WIDTH*1.38)/2) * 2./(HEIGHT*0.85); //((double)(w - 200)/WIDTH) * 2 - 1;
+			// double yFractal = (h - HEIGHT/2) * 2./(HEIGHT*0.85); //((double)h/HEIGHT) * 2 - 1;
+			// int iterations = Mandelbrot::getIterations(xFractal, yFractal);
+			pair<double, double> coords = zoomlist.doZoom(w, h);
 
 			/* Run the Mandelbrot Algorithm */
-			int iterations = Mandelbrot::getIterations(xFractal, yFractal);
+			int iterations = Mandelbrot::getIterations(coords.first, coords.second);
 			fractal[h*WIDTH + w] = iterations;
 
 			/* Store the values in a histogram */
