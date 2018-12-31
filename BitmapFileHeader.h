@@ -8,6 +8,8 @@ using namespace std;
 
 #pragma pack(2)
 
+namespace akiljames {
+
 struct BitmapFileHeader {
 	/*
 		For writing information to the bitmap file.
@@ -19,6 +21,9 @@ struct BitmapFileHeader {
 
 	
 };
+
+}
+
 
 
 

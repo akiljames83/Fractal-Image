@@ -9,7 +9,9 @@ using namespace std;
 
 namespace akiljames {
 
-Bitmap::Bitmap (int width, int height) : m_width(width), m_height(height), m_pPixels(new uint8_t [width * height * 3]{}) {
+Bitmap::Bitmap (int width, int height) : 
+	m_width(width), m_height(height), m_pPixels(
+		new uint8_t [width * height * 3]{}) {
 	// Brackets, {}, for the m_pPixels in initialization list sets the values to be 0 at those locations in memory
 
 }
@@ -27,7 +29,7 @@ bool Bitmap::write(string filename) {
 	ofstream file;
 
 	/* Writing to a binary file */
-	file.open(filename.c_str(), ios::out|ios::binary);
+	file.open(filename.c_str(), ios::out | ios::binary);
 
 	/* Checking to see if we can write to the file */
 	if (!file)
@@ -36,7 +38,7 @@ bool Bitmap::write(string filename) {
 	/* Writing to file after casting the pointer, static cast does not work though */
 	file.write((char *)&fileHeader, sizeof(fileHeader));
 	file.write((char *)&infoHeader, sizeof(infoHeader));
-	file.write((char *)(m_pPixels.get()), sizeof(m_width * m_height * 3));
+	file.write((char *)m_pPixels.get(), m_width * m_height * 3);
 
 
 	file.close();
@@ -49,7 +51,15 @@ bool Bitmap::write(string filename) {
 }
 
 void Bitmap::setPixel(int x, int y, uint8_t red, uint8_t green, uint8_t blue) {
-	return;
+	uint8_t *pPixel = m_pPixels.get(); /* Allows you to get memory address from unique ptrs */
+	pPixel += (y * 3) * m_width + (x * 3);
+
+	/* Bitmap is of little Endian format, thats why it is order BGR instead of RGB */
+	pPixel[0] =  blue;
+	pPixel[1] = green;
+	pPixel[2] = red;
+
+
 }
 
 Bitmap::~Bitmap() {
