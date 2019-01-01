@@ -9,10 +9,16 @@ int main() {
 
 	FractalCreator fractalCreator(m_width, m_height);
 
-	fractalCreator.addRange(0, RGB(0, 0, 0));
-	fractalCreator.addRange(0.3, RGB(255, 0, 0));
-	fractalCreator.addRange(0.5, RGB(255, 255, 0));
-	fractalCreator.addRange(1., RGB(255, 255, 255));
+	fractalCreator.addRange(0, RGB(255, 209, 73));
+	fractalCreator.addRange(0.3, RGB(0, 0, 0)); // RGB(255, 0, 0));
+	fractalCreator.addRange(0.5, RGB(0, 0, 0)); // RGB(255, 255, 0));
+	fractalCreator.addRange(1., RGB(165, 2, 40)); // RGB(255, 255, 255));
+	/*
+	fractalCreator.addRange(0, RGB(237, 77, 154));
+	fractalCreator.addRange(0.3, RGB(156, 178, 214)); // RGB(255, 0, 0));
+	fractalCreator.addRange(0.5, RGB(77, 237, 152)); // RGB(255, 255, 0));
+	fractalCreator.addRange(1., RGB(169, 176, 2)); // RGB(255, 255, 255));
+	*/
 
 	fractalCreator.run("test4.bmp");
 

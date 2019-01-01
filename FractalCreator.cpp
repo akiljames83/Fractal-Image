@@ -42,8 +42,8 @@ void FractalCreator::calculateRangeTotals() {
 }
 
 void FractalCreator::run(string file) {
-	addZoom(Zoom(295, 202, 0.1));
-    addZoom(Zoom(312, 304, 0.1)); // 0.3 is cool too
+	addZoom(Zoom(400, 175, 0.1));
+    addZoom(Zoom(685, 324, 0.009)); // 0.3 is cool too
 
     calculateIteration();
     calculateTotalIteration();
